@@ -7,10 +7,10 @@ const IncidentController = require("./controllers/IncidentController");
 const ProfileController = require("./controllers/ProfileController");
 const SessionController = require("./controllers/SessionController");
 
-routes.post("api/session", SessionController.create);
+routes.post("/api/session", SessionController.create);
 
 // prettier-ignore
-routes.post("api/ongs", celebrate({
+routes.post("/api/ongs", celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
       email: Joi.string().required().email(),
@@ -23,7 +23,7 @@ routes.post("api/ongs", celebrate({
 );
 
 // prettier-ignore
-routes.get("api/incidents", celebrate({
+routes.get("/api/incidents", celebrate({
     [Segments.QUERY]: Joi.object().keys({
       page: Joi.number()
     })
@@ -31,14 +31,14 @@ routes.get("api/incidents", celebrate({
   IncidentController.index
 );
 // prettier-ignore
-routes.delete("api/incidents/:id", celebrate({
+routes.delete("/api/incidents/:id", celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.number().required()
     })
   }),
   IncidentController.delete
 );
-routes.post("api/incidents", IncidentController.store);
+routes.post("/api/incidents", IncidentController.store);
 
 // routes.get(
 //   "/profile",
@@ -49,7 +49,7 @@ routes.post("api/incidents", IncidentController.store);
 //   }),
 //   ProfileController.index
 // );
-routes.use("/profile", ProfileController.validate);
-routes.get("/profile", ProfileController.index);
+routes.use("/api/profile", ProfileController.validate);
+routes.get("/api/profile", ProfileController.index);
 
 module.exports = routes;
