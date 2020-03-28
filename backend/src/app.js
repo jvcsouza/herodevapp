@@ -11,7 +11,7 @@ app.use(express.json());
 const dirApp = path.join(__dirname, "../../frontend/build");
 
 app.use(express.static(dirApp));
-app.use("/", (_, res) => res.sendFile(path.join(dirApp, "index.html")));
+app.get("/", (_, res) => res.sendFile(path.join(dirApp, "index.html")));
 app.use(routes);
 app.use(errors());
 
