@@ -1,0 +1,13 @@
+{
+  "name": "herodevapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./backend/src/npm i && ./backend/src/npm start",
+    "heroku-postbuild": "cd ./frontend && npm i && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

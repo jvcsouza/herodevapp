@@ -20,7 +20,6 @@
   },
   "scripts": {
     "start": "node ./src/server.js",
-    "heroku-postbuild": "cd ../frontend && npm i && npm run build",
     "dev": "nodemon ./src/server.js",
     "test": "cross-env NODE_ENV=test jest"
   },
