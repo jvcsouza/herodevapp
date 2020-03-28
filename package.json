@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./backend/src/npm i && ./backend/src/npm start",
+    "start": "cd ./backend/src/ && npm i && npm start",
     "heroku-postbuild": "cd ./frontend && npm i && npm run build"
   },
   "keywords": [],
