@@ -36,7 +36,7 @@ routes.delete("/api/incidents/:id", celebrate({
       id: Joi.number().required()
     })
   }),
-  IncidentController.delete
+  IncidentController.Delete
 );
 routes.post("/api/incidents", IncidentController.store);
 

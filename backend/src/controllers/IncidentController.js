@@ -1,6 +1,8 @@
 const connection = require("../database/connection");
 const { request, response } = require("express");
 
+const { notifyNewIncident, notifyRemoveIncident } = require("../socket");
+
 module.exports = {
   /**
    * @param {request} req
@@ -20,7 +22,8 @@ module.exports = {
         "ongs.name",
         "ongs.whatsapp",
         "ongs.city",
-        "ongs.uf"
+        "ongs.uf",
+        "ongs.email"
       ]);
 
     resp.header("X-Total-Count", count["count(*)"]);
@@ -44,6 +47,21 @@ module.exports = {
       ong_id
     });
 
+    const incident = await connection("incidents")
+      .where("incidents.id", id)
+      .join("ongs", "ongs.id", "=", "incidents.ong_id")
+      .select([
+        "incidents.*",
+        "ongs.name",
+        "ongs.whatsapp",
+        "ongs.city",
+        "ongs.uf",
+        "ongs.email"
+      ])
+      .first();
+
+    notifyNewIncident({ incident });
+
     return resp.json({ id });
   },
 
@@ -51,7 +69,7 @@ module.exports = {
    * @param {request} req
    * @param {response} resp
    */
-  async delete(req, resp) {
+  async Delete(req, resp) {
     const { id } = req.params;
     const ong_id = req.headers.authorization;
 
@@ -66,6 +84,8 @@ module.exports = {
     await connection("incidents")
       .where("id", id)
       .delete();
+
+    notifyRemoveIncident({ id });
 
     return resp.status(204).send();
   }

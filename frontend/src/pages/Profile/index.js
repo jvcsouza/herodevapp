@@ -15,12 +15,8 @@ export default function Profile() {
   const [incidents, setIncidents] = useState([]);
 
   useEffect(() => {
-    api
-      .get("profile", {
-        headers: {
-          authorization: ongId
-        }
-      })
+    // prettier-ignore
+    api.get("profile", { headers: { authorization: ongId }})
       .then(resp => setIncidents(resp.data));
   }, [ongId]);
 

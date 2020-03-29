@@ -1,3 +1,5 @@
-const app = require("./app");
+// require("nocycle").detect();
 
-app.listen(process.env.PORT || 3333);
+const server = require("./app");
+
+server.listen(process.env.PORT || 3333);

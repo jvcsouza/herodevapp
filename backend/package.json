@@ -8,14 +8,18 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
-    "jest": "^25.2.3",
+    "http": "0.0.1-security",
     "knex": "^0.20.13",
     "nodemon": "^2.0.2",
-    "sqlite3": "^4.1.1"
+    "socket.io": "^2.3.0",
+    "sqlite3": "^4.1.1",
+    "static-vars": "0.0.2"
   },
   "devDependencies": {
     "@types/knex": "^0.16.1",
-    "supertest": "^4.0.2"
+    "nocycle": "^1.1.1",
+    "supertest": "^4.0.2",
+    "jest": "^25.2.3"
   },
   "scripts": {
     "start": "node ./src/server.js",
